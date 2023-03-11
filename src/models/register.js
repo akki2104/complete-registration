@@ -1,4 +1,4 @@
-const { registerHelper } = require("hbs");
+
 const mongoose=require("mongoose");
 
 // schema
@@ -18,7 +18,7 @@ const entries=new mongoose.Schema({
         required:true,
         min:6
     },
-    conformPassword:{
+    rePass:{
         type:String,
         required:true,
         min:6
