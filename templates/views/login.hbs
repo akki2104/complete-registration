@@ -69,17 +69,17 @@
             <!-- Pills content -->
             <div class="tab-content mt-5">
                 <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form action="/register" method="post">
+                    <form action="/login" method="post">
 
                         <!-- Email input -->
                         <div class="form-outline mb-5">
-                            <input type="email" id="loginName" class="form-control" />
-                            <label class="form-label" for="loginName">Email or username</label>
+                            <input type="email" id="loginName" class="form-control"  name="logmail" />
+                            <label class="form-label" for="loginName">Email</label>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-5">
-                            <input type="password" id="loginPassword" class="form-control" />
+                            <input type="password" id="loginPassword" class="form-control" name="logpass"/>
                             <label class="form-label" for="loginPassword">Password</label>
                         </div>
 
@@ -109,30 +109,30 @@
                     </form>
                 </div>
                 <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                    <form>
+                    <form action="/register" method="POST">
 
                         
                         <!-- Username input -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="registerUsername" class="form-control" />
+                            <input type="text" id="registerUsername" class="form-control" name="userName" />
                             <label class="form-label" for="registerUsername">Username</label>
                         </div>
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="registerEmail" class="form-control" />
+                            <input type="email" id="registerEmail" class="form-control" name="email"/>
                             <label class="form-label" for="registerEmail">Email</label>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" />
+                            <input type="password" id="registerPassword" class="form-control" name="password" />
                             <label class="form-label" for="registerPassword">Password</label>
                         </div>
 
                         <!-- Repeat Password input -->
                         <div class="form-outline mb-5">
-                            <input type="password" id="registerRepeatPassword" class="form-control" />
+                            <input type="password" id="registerRepeatPassword" class="form-control" name="rePass" />
                             <label class="form-label" for="registerRepeatPassword">Confirm password</label>
                         </div>
 
