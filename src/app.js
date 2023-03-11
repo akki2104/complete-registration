@@ -5,6 +5,7 @@ require("./db/conn");
 const app = express();
 const Register = require("./models/register");
 const exp = require("constants");
+const bcrypt=require("bcryptjs");
 
 
 // port
@@ -44,13 +45,15 @@ app.post("/register", async (req, res) => {
         const mail = req.body.email;
         const pass = req.body.password;
         const rePasss = req.body.rePass;
-        if (pass === rePasss) {
+        if (rePasss===pass) {
             const newUser = new Register({
                 userName: uName,
                 email: mail,
                 password: pass,
                 rePass: rePasss
             })
+            // middleware bcryptJS
+
             const registered = await newUser.save();
             res.status(201).render("login");
         } else {
@@ -73,9 +76,11 @@ app.post("/login", async (req, res) => {
         const mail = req.body.logmail;
         const pass = req.body.logpass;
         const doesExists=await Register.findOne({email:mail});
+        const yespass=doesExists.password;
         if(doesExists)
         {
-            if(doesExists.password===pass)
+            const isMatch=await bcrypt.compare(pass,yespass);
+            if(isMatch)
             {
                 res.status(200).send("bss itna hee tha ..khush ho jao");
             }else{
