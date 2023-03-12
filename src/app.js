@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
@@ -52,8 +53,10 @@ app.post("/register", async (req, res) => {
                 password: pass,
                 rePass: rePasss
             })
-            // middleware bcryptJS
 
+            // middleware bcryptJS
+            const token =await newUser.genAuthToken();  //middleware for generating token 
+            console.log(`the token generated is(i m app.js/registration) ${token}`);
             const registered = await newUser.save();
             res.status(201).render("login");
         } else {
@@ -68,6 +71,7 @@ app.post("/register", async (req, res) => {
 
     } catch (e) {
         res.status(400).send(e);
+        console.log(e);
     }
 })
 // read existing user
@@ -79,7 +83,12 @@ app.post("/login", async (req, res) => {
         const yespass=doesExists.password;
         if(doesExists)
         {
-            const isMatch=await bcrypt.compare(pass,yespass);
+            const isMatch=await bcrypt.compare(pass,yespass);//comparing  pass
+
+            const token =await doesExists.genAuthToken();  //middleware for generating token during login
+            console.log(`the token generated is(i m app.js/login) ${token.toString()}`);
+
+
             if(isMatch)
             {
                 res.status(200).send("bss itna hee tha ..khush ho jao");
@@ -91,6 +100,7 @@ app.post("/login", async (req, res) => {
         }
     } catch (e) {
         res.status(400).send(e);
+        console.log(e);
     }
 })
 
